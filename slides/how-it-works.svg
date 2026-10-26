@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 570" width="1360" height="570" font-family="Segoe UI, Inter, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#141414"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#D93A3A"/>
+    </marker>
+    <marker id="arrow-grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6E6E73"/>
+    </marker>
+  </defs>
+
+  <rect width="1360" height="570" fill="#FFFFFF"/>
+
+  <!-- Main flow boxes -->
+  <g>
+    <rect x="60" y="230" width="180" height="110" rx="16" fill="#F2F2F7"/>
+    <text x="150" y="272" text-anchor="middle" font-size="20" font-weight="600" fill="#141414">User</text>
+    <text x="150" y="298" text-anchor="middle" font-size="15" fill="#6E6E73">Picks an option</text>
+    <text x="150" y="320" text-anchor="middle" font-size="14" fill="#6E6E73" font-family="Consolas, monospace">main.py</text>
+
+    <rect x="325" y="230" width="180" height="110" rx="16" fill="#F2F2F7"/>
+    <text x="415" y="272" text-anchor="middle" font-size="20" font-weight="600" fill="#141414">Send Request</text>
+    <text x="415" y="298" text-anchor="middle" font-size="15" fill="#6E6E73">Builds the URL</text>
+    <text x="415" y="320" text-anchor="middle" font-size="14" fill="#6E6E73" font-family="Consolas, monospace">ip_api.py</text>
+
+    <rect x="590" y="230" width="180" height="110" rx="18" fill="#141414"/>
+    <text x="680" y="272" text-anchor="middle" font-size="20" font-weight="600" fill="#FFFFFF">ipapi.co</text>
+    <text x="680" y="298" text-anchor="middle" font-size="15" fill="#C7C7CC">Free REST API</text>
+    <text x="680" y="320" text-anchor="middle" font-size="14" fill="#FFC633">no API key</text>
+
+    <rect x="855" y="230" width="180" height="110" rx="16" fill="#F2F2F7"/>
+    <text x="945" y="272" text-anchor="middle" font-size="20" font-weight="600" fill="#141414">Format Results</text>
+    <text x="945" y="298" text-anchor="middle" font-size="15" fill="#6E6E73">Picks useful fields</text>
+    <text x="945" y="320" text-anchor="middle" font-size="14" fill="#6E6E73" font-family="Consolas, monospace">display.py</text>
+
+    <rect x="1120" y="230" width="180" height="110" rx="16" fill="#F2F2F7" stroke="#FFC633" stroke-width="3"/>
+    <text x="1210" y="272" text-anchor="middle" font-size="20" font-weight="600" fill="#141414">Terminal</text>
+    <text x="1210" y="298" text-anchor="middle" font-size="15" fill="#6E6E73">Shows the table</text>
+    <text x="1210" y="320" text-anchor="middle" font-size="14" fill="#6E6E73">IP, ISP, ASN, location</text>
+  </g>
+
+  <!-- Main flow arrows -->
+  <g stroke="#141414" stroke-width="2.5" fill="none">
+    <line x1="240" y1="285" x2="323" y2="285" marker-end="url(#arrow)"/>
+    <line x1="505" y1="285" x2="588" y2="285" marker-end="url(#arrow)"/>
+    <line x1="770" y1="285" x2="853" y2="285" marker-end="url(#arrow)"/>
+    <line x1="1035" y1="285" x2="1118" y2="285" marker-end="url(#arrow)"/>
+  </g>
+  <g font-size="13" fill="#6E6E73" text-anchor="middle">
+    <text x="282" y="274">option 1</text>
+    <text x="547" y="274">GET request</text>
+    <text x="812" y="274">JSON reply</text>
+    <text x="1077" y="274">clean table</text>
+  </g>
+
+  <!-- IP check before a lookup (option 2) -->
+  <path d="M150,230 V100 H243" stroke="#6E6E73" stroke-width="2.5" stroke-dasharray="8 6" fill="none" marker-end="url(#arrow-grey)"/>
+  <rect x="245" y="60" width="340" height="80" rx="16" fill="#FFFFFF" stroke="#6E6E73" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="415" y="94" text-anchor="middle" font-size="18" font-weight="600" fill="#141414">Check the IP</text>
+  <text x="415" y="120" text-anchor="middle" font-size="14" fill="#6E6E73"><tspan font-family="Consolas, monospace">ip_checker.py</tspan>, valid and public?</text>
+  <path d="M415,140 V228" stroke="#6E6E73" stroke-width="2.5" stroke-dasharray="8 6" fill="none" marker-end="url(#arrow-grey)"/>
+  <text x="160" y="160" font-size="13" fill="#6E6E73">option 2</text>
+
+  <!-- Error branch -->
+  <path d="M415,340 V470 H478" stroke="#D93A3A" stroke-width="2.5" fill="none" marker-end="url(#arrow-red)"/>
+  <rect x="480" y="430" width="400" height="80" rx="16" fill="#FFFFFF" stroke="#D93A3A" stroke-width="2"/>
+  <text x="680" y="464" text-anchor="middle" font-size="18" font-weight="600" fill="#D93A3A">Friendly Error Message</text>
+  <text x="680" y="490" text-anchor="middle" font-size="14" fill="#6E6E73">No internet, timeout, daily limit, invalid IP</text>
+  <path d="M880,470 H1210 V342" stroke="#D93A3A" stroke-width="2.5" fill="none" marker-end="url(#arrow-red)"/>
+  <text x="425" y="410" font-size="13" fill="#D93A3A">if something fails</text>
+</svg>
