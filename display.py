@@ -15,6 +15,7 @@ def print_banner():
 def print_menu():
     print("\n" + YELLOW + "1" + RESET + "  Show my public IP info")
     print(YELLOW + "2" + RESET + "  Look up an IP address")
+    print(YELLOW + "3" + RESET + "  Check an IP offline")
     print(YELLOW + "q" + RESET + "  Quit")
 
 

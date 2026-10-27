@@ -27,3 +27,13 @@ def check_ip_type(text):
         return "Public"
     else:
         return "Reserved"
+
+
+# Build offline details for an IP address
+def build_ip_type_details(text):
+    ip = ipaddress.ip_address(text)
+    return {
+        "IP Address": str(ip),
+        "Version": "IPv" + str(ip.version),
+        "Type": check_ip_type(text),
+    }
