@@ -1,0 +1,35 @@
+.skeleton {
+  display: block; border-radius: var(--radius-skeleton);
+  background: linear-gradient(90deg, var(--color-skeleton), var(--color-skeleton-shine), var(--color-skeleton));
+  background-size: 200% 100%;
+  animation: shimmer var(--duration-shimmer) linear infinite;
+}
+
+.card-dark .skeleton {
+  background-image: linear-gradient(90deg, var(--color-skeleton-dark), var(--color-skeleton-dark-shine), var(--color-skeleton-dark));
+}
+
+.skeleton-title { width: 45%; height: var(--skeleton-title-height); }
+.skeleton-body { width: 75%; height: var(--skeleton-body-height); margin-top: var(--space-xs); }
+
+.skeleton-wordmark { width: var(--logo-size); height: var(--logo-size); border-radius: 50%; }
+.skeleton-nav { justify-self: center; width: 170px; height: var(--control-height); border-radius: var(--radius-pill); }
+.skeleton-contact { justify-self: end; width: var(--control-height); height: var(--control-height); border-radius: 50%; }
+.skeleton-hero-title { width: min(620px, 100%); height: var(--text-hero); }
+.skeleton-hero-subline { width: min(320px, 80%); height: var(--text-subline); margin-top: var(--space-md); }
+.skeleton-action { width: 96px; height: var(--control-height); margin-top: var(--space-lg); border-radius: var(--radius-pill); }
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@media (max-width: 720px) {
+  .skeleton-contact { display: none; }
+  .skeleton-nav { justify-self: end; }
+  .skeleton-hero-title { height: var(--text-hero-small); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
