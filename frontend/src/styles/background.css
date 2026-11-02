@@ -1,0 +1,40 @@
+.page-background { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+
+.page-background::after {
+  content: ""; position: absolute; inset: calc(-1 * var(--dot-gap));
+  background-image: radial-gradient(var(--color-dot) var(--dot-size), transparent var(--dot-size));
+  background-size: var(--dot-gap) var(--dot-gap);
+  animation: drift-dots var(--duration-dots) linear infinite;
+}
+
+.site-footer { position: relative; }
+
+.site-footer::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: -1;
+  height: var(--footer-glow-height); pointer-events: none;
+  background: linear-gradient(90deg, var(--color-glow-accent), var(--color-glow-grey), var(--color-glow-accent));
+  background-size: 200% 100%;
+  mask-image: linear-gradient(to top, black, transparent);
+  transform-origin: bottom;
+  animation:
+    drift-glow var(--duration-glow) ease-in-out infinite alternate,
+    breathe-glow var(--duration-breathe) ease-in-out infinite alternate;
+}
+
+@keyframes drift-glow {
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
+}
+
+@keyframes breathe-glow {
+  from { transform: scaleY(0.5); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes drift-dots {
+  to { transform: translate(var(--dot-gap), var(--dot-gap)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer::before, .page-background::after { animation: none; }
+}

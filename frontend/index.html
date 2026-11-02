@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPScout</title>
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/styles/tokens.css" />
+    <link rel="stylesheet" href="/src/styles/layout.css" />
+    <link rel="stylesheet" href="/src/styles/components.css" />
+    <link rel="stylesheet" href="/src/styles/background.css" />
+    <link rel="stylesheet" href="/src/styles/skeleton.css" />
+  </head>
+  <body>
+    <div class="page-background" aria-hidden="true"></div>
+    <div id="root">
+      <div role="status" aria-label="Loading">
+        <header class="site-header">
+          <span class="skeleton skeleton-wordmark"></span>
+          <span class="skeleton skeleton-nav"></span>
+          <span class="skeleton skeleton-contact"></span>
+        </header>
+        <section class="hero hero-centered">
+          <span class="skeleton skeleton-hero-title"></span>
+          <span class="skeleton skeleton-hero-subline"></span>
+          <span class="skeleton skeleton-action"></span>
+        </section>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

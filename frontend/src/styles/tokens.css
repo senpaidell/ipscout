@@ -1,0 +1,57 @@
+:root {
+  --color-page: #ffffff;
+  --color-surface: #f2f2f7;
+  --color-text: #141414;
+  --color-muted: #6e6e73;
+  --color-accent: #ffc633;
+  --color-error: #d93a3a;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: #c7c7cc;
+  --color-skeleton: #e3e3e8;
+  --color-skeleton-shine: #f7f7fa;
+  --color-skeleton-dark: #2c2c2e;
+  --color-skeleton-dark-shine: #48484a;
+  --color-dot: rgba(20, 20, 20, 0.09);
+  --color-glow-accent: rgba(255, 198, 51, 0.32);
+  --color-glow-grey: rgba(110, 110, 115, 0.16);
+
+  --radius-card: 16px;
+  --radius-dark-card: 18px;
+  --radius-pill: 999px;
+  --radius-skeleton: 6px;
+
+  --width-content: 1120px;
+  --gutter: 24px;
+  --gutter-small: 16px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --control-height: 44px;
+  --logo-size: 44px;
+  --icon-size: 22px;
+  --spinner-size: 20px;
+  --footer-glow-height: 25vh;
+  --dot-gap: 28px;
+  --dot-size: 1.5px;
+  --skeleton-title-height: 19px;
+  --skeleton-body-height: 17px;
+
+  --text-hero: 64px;
+  --text-hero-small: 40px;
+  --tracking-hero: -1.6px;
+  --tracking-hero-small: -1px;
+  --text-card-title: 16px;
+  --text-body: 14px;
+  --text-subline: 16px;
+
+  --duration-fast: 150ms;
+  --duration-shimmer: 1600ms;
+  --duration-spin: 800ms;
+  --duration-glow: 24s;
+  --duration-breathe: 6s;
+  --duration-dots: 30s;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+}
