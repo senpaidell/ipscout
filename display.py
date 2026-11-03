@@ -44,6 +44,7 @@ def build_ip_details(json_data):
         "Version": get("version"),
         "ISP": get("org"),
         "ASN": get("asn"),
+        "Network": get("network"),
         "City": get("city"),
         "Region": get("region"),
         "Country": str(get("country_name")) + " (" + str(get("country_code")) + ")",

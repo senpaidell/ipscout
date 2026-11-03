@@ -5,6 +5,7 @@ export function buildIpDetails(data) {
   return [
     { label: "ISP", value: get("org") },
     { label: "ASN", value: get("asn") },
+    { label: "Network", value: get("network") },
     { label: "City", value: get("city") },
     { label: "Region", value: get("region") },
     { label: "Country", value: get("country_name") + " (" + get("country_code") + ")" },
