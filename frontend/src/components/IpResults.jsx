@@ -1,7 +1,7 @@
 import FeatureCard from "./FeatureCard.jsx";
 import { buildIpDetails } from "../utils/ipDetails.js";
 
-// Show the IP as a headline card, its details and the Again button
+// IP results
 export default function IpResults({ data, onAgain }) {
   return (
     <section className="results">

@@ -1,11 +1,11 @@
 const IPV4_PATTERN = /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$/;
 
-// Check if text is a valid IPv4 address
+// IPv4 check
 function isValidIpv4(text) {
   return IPV4_PATTERN.test(text);
 }
 
-// Check if text is a valid IPv6 address
+// IPv6 check
 function isValidIpv6(text) {
   if (!text.includes(":")) return false;
   try {
@@ -16,12 +16,12 @@ function isValidIpv6(text) {
   }
 }
 
-// Check if text is a valid IPv4 or IPv6 address
+// IP check
 export function isValidIp(text) {
   return isValidIpv4(text) || isValidIpv6(text);
 }
 
-// Check if an IPv4 address is in a non-public range
+// IPv4 ranges
 function isNonPublicIpv4(text) {
   const [a, b] = text.split(".").map(Number);
   return (
@@ -33,13 +33,13 @@ function isNonPublicIpv4(text) {
   );
 }
 
-// Check if an IPv6 address is in a non-public range
+// IPv6 ranges
 function isNonPublicIpv6(text) {
   const ip = text.toLowerCase();
   return ip === "::" || ip === "::1" || /^(f[c-d]|fe[89ab]|ff)/.test(ip);
 }
 
-// Check if an address can be looked up on the public internet
+// Public check
 export function isPublicIp(text) {
   return isValidIpv4(text) ? !isNonPublicIpv4(text) : !isNonPublicIpv6(text);
 }

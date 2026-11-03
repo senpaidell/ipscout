@@ -1,6 +1,6 @@
 const BASE_URL = "/api/ip";
 
-// Fetch IP details from ipapi.co through our own /api/ip route (blank ip = this computer)
+// Fetch IP
 export async function fetchIpInfo(ip = "") {
   const url = ip === "" ? BASE_URL : BASE_URL + "?ip=" + encodeURIComponent(ip);
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-// Show a centred back-to-top button after the first scroll
+// Back to top
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
 

@@ -7,7 +7,7 @@ const SAMPLE_IPS = [
   { name: "Cloudflare", ip: "2606:4700:4700::1111" },
 ];
 
-// Show public IPs that can be looked up with one click
+// Sample IPs
 export default function SampleIps({ isDisabled, onPick }) {
   return (
     <div className="sample-ips">

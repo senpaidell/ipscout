@@ -1,6 +1,6 @@
 const DETAIL_COUNT = 8;
 
-// Show one placeholder card with shimmering lines
+// Skeleton card
 function SkeletonCard({ isDark = false }) {
   return (
     <div className={isDark ? "card card-dark" : "card"}>
@@ -10,7 +10,7 @@ function SkeletonCard({ isDark = false }) {
   );
 }
 
-// Show placeholder cards while the IP details load
+// Results skeleton
 export default function IpResultsSkeleton() {
   return (
     <section className="results" role="status" aria-label="Loading">

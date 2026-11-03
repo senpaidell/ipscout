@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Send /api/ip to ipapi.co during npm run dev (Vercel uses api/ip.js instead)
+// Dev proxy
 function buildIpapiPath(path) {
   const ip = new URL(path, "http://localhost").searchParams.get("ip");
   return ip ? "/" + ip + "/json/" : "/json/";

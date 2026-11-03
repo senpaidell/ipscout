@@ -5,19 +5,19 @@ import IpResults from "../components/IpResults.jsx";
 import IpResultsSkeleton from "../components/IpResultsSkeleton.jsx";
 import SampleIps from "../components/SampleIps.jsx";
 
-// Find the problem with a typed IP, if any
+// Input problem
 function findIpProblem(ip) {
   if (!isValidIp(ip)) return "'" + ip + "' is not a valid IPv4 or IPv6 address.";
   if (!isPublicIp(ip)) return ip + " is not a public address. Only public IPs can be looked up.";
   return "";
 }
 
-// Look up details for an IP typed by the user
+// Look Up page
 export default function LookUpView() {
   const [ip, setIp] = useState("");
   const { data, error, isLoading, loadIp, showError } = useIpRequest();
 
-  // Check the typed IP and fetch its details
+  // Submit lookup
   function submitLookup(event) {
     event.preventDefault();
     const typedIp = ip.trim();
@@ -26,7 +26,7 @@ export default function LookUpView() {
     else loadIp(typedIp);
   }
 
-  // Fill in a sample IP and fetch its details
+  // Sample lookup
   function pickSample(sampleIp) {
     setIp(sampleIp);
     loadIp(sampleIp);

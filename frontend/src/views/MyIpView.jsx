@@ -2,7 +2,7 @@ import { useIpRequest } from "../api/useIpRequest.js";
 import IpResults from "../components/IpResults.jsx";
 import IpResultsSkeleton from "../components/IpResultsSkeleton.jsx";
 
-// Show the Go hero, then this computer's public IP details
+// Home page
 export default function MyIpView() {
   const { data, error, isLoading, loadIp } = useIpRequest();
   const isIdle = !data && !isLoading;

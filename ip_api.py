@@ -4,7 +4,7 @@ base_url = "https://ipapi.co/"
 headers = {"User-Agent": "IPScout/1.0"}
 
 
-# Fetch IP details from ipapi.co (blank ip = this computer)
+# Fetch IP
 def fetch_ip_info(ip=""):
     if ip == "":
         url = base_url + "json/"
@@ -35,6 +35,6 @@ def fetch_ip_info(ip=""):
     return json_data, ""
 
 
-# Fetch details for this computer's public IP
+# Fetch my IP
 def fetch_my_ip_info():
     return fetch_ip_info("")
