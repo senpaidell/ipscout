@@ -20,7 +20,11 @@ Requires Python 3.8 or newer. On Windows use `py`; on Mac/Linux (including the D
 No API key is needed. The free ipapi.co plan allows about 1,000 requests per day.
 
 ## React frontend
-The `frontend` folder has a web version built with React and Vite. It calls ipapi.co directly from the browser, so it doesn't need the Python app running.
+The `frontend` folder has a web version built with React and Vite. It doesn't need the Python app running.
+
+The browser never calls ipapi.co directly, because ad blockers and Edge's Tracking Prevention block that domain. It calls the site's own `/api/ip` route instead:
+- **On Vercel:** `api/ip.js` is a serverless function that calls ipapi.co. For "my IP" it looks up the visitor's IP from the `x-real-ip` header, not the server's.
+- **With `npm run dev`:** `vite.config.js` forwards `/api/ip` to ipapi.co.
 
 ### Features
 | Page | What it does |
@@ -49,13 +53,22 @@ npm run dev
 
 Then open the address it prints, usually `http://localhost:5173`.
 
+### How to deploy on Vercel
+1. Import the repo into Vercel.
+2. Set **Root Directory** to `frontend`, so Vercel finds the `api/` folder.
+3. Leave the framework as **Vite** and deploy.
+
+On Vercel, every ipapi.co request comes from Vercel's servers, so the free daily limit is shared. If results show "RateLimited", try again later.
+
 ### Frontend structure
 | Path in `frontend` | Purpose |
 |---|---|
 | `index.html` | Page shell, including the first-load skeleton and background |
 | `public/logo.svg` | IPScout logo and browser tab icon |
 | `src/App.jsx` | Header, active page and footer |
-| `src/api/` | `ipApi.js` calls ipapi.co; `useIpRequest.js` tracks data, error and loading state |
+| `api/ip.js` | Vercel serverless function that calls ipapi.co for the browser |
+| `vite.config.js` | Vite setup, including the `/api/ip` proxy used by `npm run dev` |
+| `src/api/` | `ipApi.js` calls `/api/ip`; `useIpRequest.js` tracks data, error and loading state |
 | `src/utils/` | `ipChecker.js` validates IPs; `ipDetails.js` picks the fields to display |
 | `src/views/` | `MyIpView.jsx` (Home) and `LookUpView.jsx` (Look Up) |
 | `src/components/` | Header, footer, cards, results, skeleton, sample IPs and back-to-top button |

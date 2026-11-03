@@ -1,8 +1,8 @@
-const BASE_URL = "https://ipapi.co/";
+const BASE_URL = "/api/ip";
 
-// Fetch IP details from ipapi.co (blank ip = this computer)
+// Fetch IP details from ipapi.co through our own /api/ip route (blank ip = this computer)
 export async function fetchIpInfo(ip = "") {
-  const url = ip === "" ? BASE_URL + "json/" : BASE_URL + ip + "/json/";
+  const url = ip === "" ? BASE_URL : BASE_URL + "?ip=" + encodeURIComponent(ip);
 
   let reply;
   try {
@@ -13,6 +13,9 @@ export async function fetchIpInfo(ip = "") {
 
   if (reply.status === 429) {
     throw new Error("Daily API limit reached. Try again later.");
+  }
+  if (reply.status === 502) {
+    throw new Error("Could not reach ipapi.co. Try again later.");
   }
   if (!reply.ok) {
     throw new Error("API error (status code " + reply.status + ").");
