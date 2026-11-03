@@ -1,4 +1,4 @@
-// Show a titled card in the grey or dark style
+// Feature card
 export default function FeatureCard({ title, body, isDark = false }) {
   return (
     <article className={isDark ? "card card-dark" : "card"}>

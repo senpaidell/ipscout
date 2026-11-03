@@ -5,11 +5,11 @@ import BackToTop from "./components/BackToTop.jsx";
 import MyIpView from "./views/MyIpView.jsx";
 import LookUpView from "./views/LookUpView.jsx";
 
-// Show the header, the active page and the footer
+// App
 export default function App() {
   const [page, setPage] = useState("home");
 
-  // Change the page and go back to the top
+  // Page change
   function openPage(nextPage) {
     setPage(nextPage);
     window.scrollTo({ top: 0, behavior: "smooth" });

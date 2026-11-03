@@ -1,4 +1,4 @@
-// Show the plain page footer
+// Footer
 export default function SiteFooter() {
   return (
     <footer className="site-footer">

@@ -3,7 +3,7 @@ from colors import RESET, BOLD, RED, GREEN, YELLOW, CYAN, GREY
 line = "+" * 50
 
 
-# Print the app title banner
+# Banner
 def print_banner():
     print(CYAN + line)
     print(BOLD + "  IPScout" + RESET + GREY + "  v1.0 prototype" + RESET)
@@ -11,7 +11,7 @@ def print_banner():
     print(CYAN + line + RESET)
 
 
-# Print the main menu options
+# Menu
 def print_menu():
     print("\n" + YELLOW + "1" + RESET + "  Show my public IP info")
     print(YELLOW + "2" + RESET + "  Look up an IP address")
@@ -19,7 +19,7 @@ def print_menu():
     print(YELLOW + "q" + RESET + "  Quit")
 
 
-# Print labeled details in aligned rows
+# Details table
 def print_details(title, details):
     print("\n" + CYAN + line + RESET)
     print(BOLD + GREEN + "  " + title + RESET)
@@ -29,12 +29,12 @@ def print_details(title, details):
     print(CYAN + line + RESET)
 
 
-# Print an error message in red
+# Error message
 def print_error(message):
     print("\n" + RED + "Error: " + message + RESET)
 
 
-# Pick the useful fields from the API data
+# Detail fields
 def build_ip_details(json_data):
     def get(key):
         return json_data.get(key) or "N/A"

@@ -1,7 +1,7 @@
 import ipaddress
 
 
-# Check if text is a valid IPv4 or IPv6 address
+# IP check
 def is_valid_ip(text):
     try:
         ipaddress.ip_address(text)
@@ -10,7 +10,7 @@ def is_valid_ip(text):
         return False
 
 
-# Find the type of an IP address (public, private, loopback, etc.)
+# IP type
 def check_ip_type(text):
     ip = ipaddress.ip_address(text)
     if ip.is_loopback:
@@ -29,7 +29,7 @@ def check_ip_type(text):
         return "Reserved"
 
 
-# Build offline details for an IP address
+# Offline details
 def build_ip_type_details(text):
     ip = ipaddress.ip_address(text)
     return {

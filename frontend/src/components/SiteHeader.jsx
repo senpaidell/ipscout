@@ -5,7 +5,7 @@ const PAGES = [
   { id: "lookup", label: "Look Up" },
 ];
 
-// Show the logo, the page nav and the GitHub link
+// Header
 export default function SiteHeader({ page, onNavigate }) {
   return (
     <header className="site-header">

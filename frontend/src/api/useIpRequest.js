@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { fetchIpInfo } from "./ipApi.js";
 
-// Track the data, error and loading state of an IP request
+// IP request
 export function useIpRequest() {
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // Fetch details for an IP (blank ip = this computer)
+  // Load IP
   async function loadIp(ip = "") {
     setData(null);
     setError("");
@@ -20,7 +20,7 @@ export function useIpRequest() {
     setIsLoading(false);
   }
 
-  // Clear the results and show an error
+  // Show error
   function showError(message) {
     setData(null);
     setError(message);

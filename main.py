@@ -4,7 +4,7 @@ from ip_checker import is_valid_ip, check_ip_type, build_ip_type_details
 from display import print_banner, print_menu, print_details, print_error, build_ip_details
 
 
-# Show details for this computer's public IP
+# My IP
 def show_my_ip():
     json_data, error = fetch_my_ip_info()
 
@@ -15,7 +15,7 @@ def show_my_ip():
     print_details("Your Public IP", build_ip_details(json_data))
 
 
-# Look up details for an IP typed by the user
+# IP lookup
 def look_up_ip():
     ip = input("Enter an IP address: ").strip()
 
@@ -36,7 +36,7 @@ def look_up_ip():
     print_details("IP Lookup: " + ip, build_ip_details(json_data))
 
 
-# Check an IP's version and type without internet
+# Offline check
 def check_ip_offline():
     ip = input("Enter an IP address: ").strip()
     if not is_valid_ip(ip):
@@ -45,7 +45,7 @@ def check_ip_offline():
     print_details("Offline Check: " + ip, build_ip_type_details(ip))
 
 
-# Run the main menu loop
+# Main loop
 def run_app():
     os.system("")
     print_banner()

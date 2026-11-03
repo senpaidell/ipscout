@@ -1,6 +1,6 @@
 const IP_PATTERN = /^[0-9a-fA-F:.]*$/;
 
-// Fetch IP details from ipapi.co for the browser (blank ip = the visitor's IP)
+// IP proxy
 export default async function handler(req, res) {
   const ip = req.query.ip || req.headers["x-real-ip"] || "";
   if (!IP_PATTERN.test(ip)) {

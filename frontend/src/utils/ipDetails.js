@@ -1,4 +1,4 @@
-// Pick the useful fields from the API data
+// Detail fields
 export function buildIpDetails(data) {
   const get = (key) => data[key] || "N/A";
 
