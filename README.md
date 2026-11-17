@@ -7,6 +7,9 @@
 |---|---|
 | 1 | Shows this computer's public IP: version, ISP, ASN, city, region, country, postal code, timezone, coordinates |
 | 2 | Looks up the same details for any public IPv4 or IPv6 address |
+| 3 | Checks an IP offline: version and type (public, private, loopback...) |
+| 4 | Looks up a domain name: resolves it to an IP, then shows that IP's details |
+| 5 | Shows the lookup history for the current session |
 | q | Quits the app |
 
 ## How to run the terminal app
@@ -77,11 +80,15 @@ On Vercel, every ipapi.co request comes from Vercel's servers, so the free daily
 ## Terminal app structure
 | File | Purpose |
 |---|---|
-| `main.py` | Entry point. Runs the menu loop and handles each option. |
+| `main.py` | Entry point. Runs the menu loop and the offline check. |
+| `lookups.py` | My IP, IP lookup and domain lookup options. |
+| `domain_lookup.py` | Checks a domain name and resolves it to an IP with Python's `socket` module. |
+| `history.py` | Keeps and shows the lookup history for the current session. |
 | `ip_api.py` | Calls ipapi.co and turns network/API problems into error messages. |
 | `ip_checker.py` | Checks that an IP is valid and public before looking it up, using Python's `ipaddress` module. |
 | `display.py` | All terminal output: banner, menu, detail tables, errors. |
 | `colors.py` | ANSI color codes used by `display.py`. |
+| `tests/` | Unit tests. The API and DNS are mocked, so tests never use the daily API limit. |
 
 ## How the terminal app works
 1. `main.py` shows the menu and reads the user's choice.
@@ -99,6 +106,21 @@ On Vercel, every ipapi.co request comes from Vercel's servers, so the free daily
 | Invalid IP typed | "'abc' is not a valid IPv4 or IPv6 address." |
 | Private or reserved IP in option 2 | "192.168.1.1 is a private address. Only public IPs can be looked up." |
 | Ctrl+C | Exits with "Goodbye!" |
+
+## Automated testing (CI)
+Every push and pull request runs `.github/workflows/ci.yml` on GitHub Actions. It has two jobs:
+- **Python tests:** installs `requirements.txt` and runs the `unittest` tests in `tests/`.
+- **Frontend tests and build:** runs the Vitest tests in `frontend/src/utils/` and builds the React app.
+
+The `main` branch is protected, so a pull request can only be merged when both jobs pass.
+
+Run the tests locally:
+
+| Tests | Command |
+|---|---|
+| Python (Windows) | `py -m unittest discover -s tests -v` |
+| Python (Mac / Linux) | `python3 -m unittest discover -s tests -v` |
+| Frontend | `cd frontend` then `npm test` |
 
 ## Known limitation
 ipapi.co returns the address your connection uses to reach it: IPv6 if your network supports it, otherwise IPv4. It cannot return both in one request. The version shown in the results tells you which one you got.

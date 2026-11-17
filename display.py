@@ -16,6 +16,8 @@ def print_menu():
     print("\n" + YELLOW + "1" + RESET + "  Show my public IP info")
     print(YELLOW + "2" + RESET + "  Look up an IP address")
     print(YELLOW + "3" + RESET + "  Check an IP offline")
+    print(YELLOW + "4" + RESET + "  Look up a domain name")
+    print(YELLOW + "5" + RESET + "  Show lookup history")
     print(YELLOW + "q" + RESET + "  Quit")
 
 
