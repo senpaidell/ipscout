@@ -5,6 +5,8 @@ const SAMPLE_IPS = [
   { name: "OpenDNS", ip: "208.67.222.222" },
   { name: "Google", ip: "2001:4860:4860::8888" },
   { name: "Cloudflare", ip: "2606:4700:4700::1111" },
+  { name: "Site", ip: "github.com" },
+  { name: "Site", ip: "wikipedia.org" },
 ];
 
 // Sample IPs

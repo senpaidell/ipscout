@@ -33,7 +33,8 @@ The browser never calls ipapi.co directly, because ad blockers and Edge's Tracki
 | Page | What it does |
 |---|---|
 | Home | Press **Go** to see this computer's public IP details, then **Again** to refresh them |
-| Look Up | Type a public IPv4 or IPv6 address, or click a sample IP, to see its details. **Again** repeats the lookup |
+| Look Up | Type a public IPv4 or IPv6 address or a domain name like `google.com`, or click a sample, to see its details. **Again** repeats the lookup |
+| History | Lists the lookups from this visit, newest first (up to 20). **Clear** empties the list |
 
 - Skeleton placeholders show while the page and results load, and the **Look up** button shows a spinner.
 - Invalid and non-public addresses are caught before any API request is sent.
@@ -71,9 +72,9 @@ On Vercel, every ipapi.co request comes from Vercel's servers, so the free daily
 | `src/App.jsx` | Header, active page and footer |
 | `api/ip.js` | Vercel serverless function that calls ipapi.co for the browser |
 | `vite.config.js` | Vite setup, including the `/api/ip` proxy used by `npm run dev` |
-| `src/api/` | `ipApi.js` calls `/api/ip`; `useIpRequest.js` tracks data, error and loading state |
-| `src/utils/` | `ipChecker.js` validates IPs; `ipDetails.js` picks the fields to display |
-| `src/views/` | `MyIpView.jsx` (Home) and `LookUpView.jsx` (Look Up) |
+| `src/api/` | `ipApi.js` calls `/api/ip`; `dnsApi.js` turns a domain into an IP using Google's public DNS (`dns.google`); `useIpRequest.js` tracks data, error and loading state |
+| `src/utils/` | `ipChecker.js` validates IPs; `domainChecker.js` validates domain names; `ipDetails.js` picks the fields to display; `history.js` builds history entries. The `.test.js` files next to them are the Vitest tests |
+| `src/views/` | `MyIpView.jsx` (Home), `LookUpView.jsx` (Look Up) and `HistoryView.jsx` (History) |
 | `src/components/` | Header, footer, cards, results, skeleton, sample IPs and back-to-top button |
 | `src/styles/` | `tokens.css` holds all design values; the other files hold layout, component, background and skeleton styles |
 
@@ -110,7 +111,7 @@ On Vercel, every ipapi.co request comes from Vercel's servers, so the free daily
 ## Automated testing (CI)
 Every push and pull request runs `.github/workflows/ci.yml` on GitHub Actions. It has two jobs:
 - **Python tests:** installs `requirements.txt` and runs the `unittest` tests in `tests/`.
-- **Frontend tests and build:** runs the Vitest tests in `frontend/src/utils/` and builds the React app.
+- **Frontend tests and build:** runs the Vitest tests in `frontend/src/` and builds the React app.
 
 The `main` branch is protected, so a pull request can only be merged when both jobs pass.
 

@@ -5,7 +5,7 @@ import { buildIpDetails } from "../utils/ipDetails.js";
 export default function IpResults({ data, onAgain }) {
   return (
     <section className="results">
-      <FeatureCard title={data.ip} body={data.version} isDark />
+      <FeatureCard title={data.ip} body={data.domain ? data.domain + " · " + data.version : data.version} isDark />
       <div className="card-grid">
         {buildIpDetails(data).map((detail) => (
           <FeatureCard key={detail.label} title={detail.label} body={detail.value} />

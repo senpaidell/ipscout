@@ -3,8 +3,8 @@ import IpResults from "../components/IpResults.jsx";
 import IpResultsSkeleton from "../components/IpResultsSkeleton.jsx";
 
 // Home page
-export default function MyIpView() {
-  const { data, error, isLoading, loadIp } = useIpRequest();
+export default function MyIpView({ onLookup }) {
+  const { data, error, isLoading, loadIp } = useIpRequest(onLookup);
   const isIdle = !data && !isLoading;
 
   return (
