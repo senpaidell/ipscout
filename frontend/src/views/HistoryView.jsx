@@ -1,4 +1,5 @@
-import FeatureCard from "../components/FeatureCard.jsx";
+import HistoryItem from "../components/HistoryItem.jsx";
+import { buildCsv, downloadCsv } from "../utils/csvExport.js";
 
 // History page
 export default function HistoryView({ history, onClear }) {
@@ -6,21 +7,20 @@ export default function HistoryView({ history, onClear }) {
     <>
       <section className="hero">
         <h1 className="hero-title">Lookup history</h1>
-        <p className="hero-subline">Your lookups from this visit, newest first</p>
+        <p className="hero-subline">Your lookups from this visit, newest first. Click one to see its details.</p>
         {history.length === 0 && <p className="hero-subline">No lookups yet. Try Home or Look Up first.</p>}
       </section>
       {history.length > 0 && (
         <section className="results">
-          <div className="card-grid">
+          <div className="history-list">
             {history.map((entry, index) => (
-              <FeatureCard
-                key={entry.time + "-" + index}
-                title={entry.domain || entry.ip}
-                body={(entry.domain ? entry.ip + " · " : "") + entry.place + " · " + new Date(entry.time).toLocaleTimeString()}
-              />
+              <HistoryItem key={entry.time + "-" + index} entry={entry} />
             ))}
           </div>
-          <button className="action-pill" onClick={onClear}>Clear</button>
+          <div className="history-actions">
+            <button className="action-pill" onClick={() => downloadCsv(buildCsv(history), "ipscout_history.csv")}>Export CSV</button>
+            <button className="action-pill action-pill-quiet" onClick={onClear}>Clear</button>
+          </div>
         </section>
       )}
     </>

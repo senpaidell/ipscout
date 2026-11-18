@@ -5,6 +5,7 @@ import BackToTop from "./components/BackToTop.jsx";
 import MyIpView from "./views/MyIpView.jsx";
 import LookUpView from "./views/LookUpView.jsx";
 import HistoryView from "./views/HistoryView.jsx";
+import SubnetView from "./views/SubnetView.jsx";
 import { addHistoryEntry, buildHistoryEntry } from "./utils/history.js";
 
 // App
@@ -29,6 +30,7 @@ export default function App() {
       <main className="page">
         {page === "home" && <MyIpView onLookup={saveLookup} />}
         {page === "lookup" && <LookUpView onLookup={saveLookup} />}
+        {page === "subnet" && <SubnetView />}
         {page === "history" && <HistoryView history={history} onClear={() => setHistory([])} />}
       </main>
       <BackToTop />

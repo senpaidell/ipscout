@@ -10,6 +10,8 @@
 | 3 | Checks an IP offline: version and type (public, private, loopback...) |
 | 4 | Looks up a domain name: resolves it to an IP, then shows that IP's details |
 | 5 | Shows the lookup history for the current session |
+| 6 | Exports the lookup history to `ipscout_history.csv` (opens in Excel) |
+| 7 | Subnet calculator: network, netmask, wildcard, broadcast and host range from CIDR (IPv4 and IPv6, offline) |
 | q | Quits the app |
 
 ## How to run the terminal app
@@ -34,7 +36,8 @@ The browser never calls ipapi.co directly, because ad blockers and Edge's Tracki
 |---|---|
 | Home | Press **Go** to see this computer's public IP details, then **Again** to refresh them |
 | Look Up | Type a public IPv4 or IPv6 address or a domain name like `google.com`, or click a sample, to see its details. **Again** repeats the lookup |
-| History | Lists the lookups from this visit, newest first (up to 20). **Clear** empties the list |
+| Subnet | Type an IPv4 subnet like `192.168.1.0/24` to see its network, netmask, wildcard, broadcast and host range. Works offline |
+| History | Lists the lookups from this visit, newest first (up to 20). Click one to open its details. **Export CSV** downloads the list; **Clear** empties it |
 
 - Skeleton placeholders show while the page and results load, and the **Look up** button shows a spinner.
 - Invalid and non-public addresses are caught before any API request is sent.
@@ -73,21 +76,25 @@ On Vercel, every ipapi.co request comes from Vercel's servers, so the free daily
 | `api/ip.js` | Vercel serverless function that calls ipapi.co for the browser |
 | `vite.config.js` | Vite setup, including the `/api/ip` proxy used by `npm run dev` |
 | `src/api/` | `ipApi.js` calls `/api/ip`; `dnsApi.js` turns a domain into an IP using Google's public DNS (`dns.google`); `useIpRequest.js` tracks data, error and loading state |
-| `src/utils/` | `ipChecker.js` validates IPs; `domainChecker.js` validates domain names; `ipDetails.js` picks the fields to display; `history.js` builds history entries. The `.test.js` files next to them are the Vitest tests |
-| `src/views/` | `MyIpView.jsx` (Home), `LookUpView.jsx` (Look Up) and `HistoryView.jsx` (History) |
+| `src/utils/` | `ipChecker.js` validates IPs; `domainChecker.js` validates domain names; `ipDetails.js` picks the fields to display; `history.js` builds history entries; `subnetCalc.js` works out subnets; `csvExport.js` builds and downloads the CSV. The `.test.js` files next to them are the Vitest tests |
+| `src/views/` | `MyIpView.jsx` (Home), `LookUpView.jsx` (Look Up), `SubnetView.jsx` (Subnet) and `HistoryView.jsx` (History) |
 | `src/components/` | Header, footer, cards, results, skeleton, sample IPs and back-to-top button |
 | `src/styles/` | `tokens.css` holds all design values; the other files hold layout, component, background and skeleton styles |
 
 ## Terminal app structure
 | File | Purpose |
 |---|---|
-| `main.py` | Entry point. Runs the menu loop and the offline check. |
+| `main.py` | Entry point. Runs the menu loop. |
+| `menu.py` | Banner and menu text. |
+| `tools.py` | Offline check, subnet calculator and CSV export options. |
+| `subnet_calc.py` | Works out subnet details with Python's `ipaddress` module. |
+| `csv_export.py` | Saves the lookup history to a CSV file with Python's `csv` module. |
 | `lookups.py` | My IP, IP lookup and domain lookup options. |
 | `domain_lookup.py` | Checks a domain name and resolves it to an IP with Python's `socket` module. |
 | `history.py` | Keeps and shows the lookup history for the current session. |
 | `ip_api.py` | Calls ipapi.co and turns network/API problems into error messages. |
 | `ip_checker.py` | Checks that an IP is valid and public before looking it up, using Python's `ipaddress` module. |
-| `display.py` | All terminal output: banner, menu, detail tables, errors. |
+| `display.py` | Detail tables, success and error messages. |
 | `colors.py` | ANSI color codes used by `display.py`. |
 | `tests/` | Unit tests. The API and DNS are mocked, so tests never use the daily API limit. |
 
@@ -128,7 +135,7 @@ ipapi.co returns the address your connection uses to reach it: IPv6 if your netw
 
 ## How to extend
 - **New field from the API:** add a row in `build_ip_details()` in `display.py`. See the [ipapi.co docs](https://ipapi.co/api/) for available fields.
-- **New menu option:** add a line to `print_menu()` in `display.py`, write a new verb-named function in `main.py`, and add an `elif` in `run_app()`.
+- **New menu option:** add a line to `print_menu()` in `menu.py`, write a new verb-named function in `lookups.py` (online) or `tools.py` (offline), and add an `elif` in `run_app()` in `main.py`.
 - **New field in the web app:** add a row in `buildIpDetails()` in `frontend/src/utils/ipDetails.js`.
 - **New sample IP:** add it to `SAMPLE_IPS` in `frontend/src/components/SampleIps.jsx`.
 - **Colors and sizes in the web app:** change the values in `frontend/src/styles/tokens.css`. The logo's colors are set separately in `frontend/public/logo.svg`.

@@ -1,4 +1,4 @@
-from display import print_details, print_error
+from display import print_details, print_error, build_ip_details
 
 history = []
 
@@ -6,7 +6,8 @@ history = []
 # Add to history
 def add_to_history(json_data):
     place = str(json_data.get("city") or "N/A") + ", " + str(json_data.get("country_name") or "N/A")
-    history.append({"ip": json_data.get("ip") or "N/A", "place": place})
+    details = build_ip_details(json_data)
+    history.append({"ip": json_data.get("ip") or "N/A", "place": place, "details": details})
 
 
 # History rows

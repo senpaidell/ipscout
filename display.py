@@ -1,24 +1,6 @@
-from colors import RESET, BOLD, RED, GREEN, YELLOW, CYAN, GREY
+from colors import RESET, BOLD, RED, GREEN, CYAN, GREY
 
 line = "+" * 50
-
-
-# Banner
-def print_banner():
-    print(CYAN + line)
-    print(BOLD + "  IPScout" + RESET + GREY + "  v1.0 prototype" + RESET)
-    print("  Public IP lookup for network technicians")
-    print(CYAN + line + RESET)
-
-
-# Menu
-def print_menu():
-    print("\n" + YELLOW + "1" + RESET + "  Show my public IP info")
-    print(YELLOW + "2" + RESET + "  Look up an IP address")
-    print(YELLOW + "3" + RESET + "  Check an IP offline")
-    print(YELLOW + "4" + RESET + "  Look up a domain name")
-    print(YELLOW + "5" + RESET + "  Show lookup history")
-    print(YELLOW + "q" + RESET + "  Quit")
 
 
 # Details table
@@ -27,8 +9,13 @@ def print_details(title, details):
     print(BOLD + GREEN + "  " + title + RESET)
     print(CYAN + line + RESET)
     for label, value in details.items():
-        print("  " + GREY + label.ljust(15) + RESET + str(value))
+        print("  " + GREY + label.ljust(17) + RESET + str(value))
     print(CYAN + line + RESET)
+
+
+# Success message
+def print_success(message):
+    print("\n" + GREEN + message + RESET)
 
 
 # Error message

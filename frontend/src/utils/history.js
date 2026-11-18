@@ -4,7 +4,7 @@ const MAX_ENTRIES = 20;
 export function buildHistoryEntry(data, time) {
   const city = data.city || "N/A";
   const country = data.country_name || "N/A";
-  return { ip: data.ip || "N/A", domain: data.domain || "", place: city + ", " + country, time };
+  return { ip: data.ip || "N/A", domain: data.domain || "", place: city + ", " + country, time, data };
 }
 
 // Add entry

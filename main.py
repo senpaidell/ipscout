@@ -1,17 +1,9 @@
 import os
-from ip_checker import is_valid_ip, build_ip_type_details
-from display import print_banner, print_menu, print_details, print_error
+from display import print_error
+from menu import print_banner, print_menu
 from lookups import show_my_ip, look_up_ip, look_up_domain
+from tools import check_ip_offline, calculate_subnet, export_history_csv
 from history import show_history
-
-
-# Offline check
-def check_ip_offline():
-    ip = input("Enter an IP address: ").strip()
-    if not is_valid_ip(ip):
-        print_error("'" + ip + "' is not a valid IPv4 or IPv6 address.")
-        return
-    print_details("Offline Check: " + ip, build_ip_type_details(ip))
 
 
 # Main loop
@@ -34,8 +26,12 @@ def run_app():
             look_up_domain()
         elif choice == "5":
             show_history()
+        elif choice == "6":
+            export_history_csv()
+        elif choice == "7":
+            calculate_subnet()
         else:
-            print_error("Invalid option. Enter 1, 2, 3, 4, 5, or q.")
+            print_error("Invalid option. Enter a number from 1 to 7, or q.")
 
 
 if __name__ == "__main__":
