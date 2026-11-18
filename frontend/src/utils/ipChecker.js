@@ -1,7 +1,7 @@
 const IPV4_PATTERN = /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$/;
 
 // IPv4 check
-function isValidIpv4(text) {
+export function isValidIpv4(text) {
   return IPV4_PATTERN.test(text);
 }
 

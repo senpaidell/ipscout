@@ -3,6 +3,8 @@ import GitHubLink from "./GitHubLink.jsx";
 const PAGES = [
   { id: "home", label: "Home" },
   { id: "lookup", label: "Look Up" },
+  { id: "subnet", label: "Subnet" },
+  { id: "history", label: "History" },
 ];
 
 // Header

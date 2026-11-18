@@ -6,3 +6,4 @@ venv/
 node_modules/
 dist/
 .claude/
+ipscout_history.csv

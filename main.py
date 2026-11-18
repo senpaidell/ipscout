@@ -1,48 +1,9 @@
 import os
-from ip_api import fetch_ip_info, fetch_my_ip_info
-from ip_checker import is_valid_ip, check_ip_type, build_ip_type_details
-from display import print_banner, print_menu, print_details, print_error, build_ip_details
-
-
-# My IP
-def show_my_ip():
-    json_data, error = fetch_my_ip_info()
-
-    if error:
-        print_error(error)
-        return
-
-    print_details("Your Public IP", build_ip_details(json_data))
-
-
-# IP lookup
-def look_up_ip():
-    ip = input("Enter an IP address: ").strip()
-
-    if not is_valid_ip(ip):
-        print_error("'" + ip + "' is not a valid IPv4 or IPv6 address.")
-        return
-    ip_type = check_ip_type(ip)
-
-    if ip_type != "Public":
-        print_error(ip + " is a " + ip_type.lower() + " address. Try option 3 instead.")
-        return
-
-    json_data, error = fetch_ip_info(ip)
-
-    if error:
-        print_error(error)
-        return
-    print_details("IP Lookup: " + ip, build_ip_details(json_data))
-
-
-# Offline check
-def check_ip_offline():
-    ip = input("Enter an IP address: ").strip()
-    if not is_valid_ip(ip):
-        print_error("'" + ip + "' is not a valid IPv4 or IPv6 address.")
-        return
-    print_details("Offline Check: " + ip, build_ip_type_details(ip))
+from display import print_error
+from menu import print_banner, print_menu
+from lookups import show_my_ip, look_up_ip, look_up_domain
+from tools import check_ip_offline, calculate_subnet, export_history_csv
+from history import show_history
 
 
 # Main loop
@@ -61,8 +22,16 @@ def run_app():
             look_up_ip()
         elif choice == "3":
             check_ip_offline()
+        elif choice == "4":
+            look_up_domain()
+        elif choice == "5":
+            show_history()
+        elif choice == "6":
+            export_history_csv()
+        elif choice == "7":
+            calculate_subnet()
         else:
-            print_error("Invalid option. Enter 1, 2, 3, or q.")
+            print_error("Invalid option. Enter a number from 1 to 7, or q.")
 
 
 if __name__ == "__main__":

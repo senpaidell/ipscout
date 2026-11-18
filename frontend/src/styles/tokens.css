@@ -47,6 +47,7 @@
   --text-subline: 16px;
 
   --duration-fast: 150ms;
+  --duration-medium: 250ms;
   --duration-shimmer: 1600ms;
   --duration-spin: 800ms;
   --duration-glow: 24s;
